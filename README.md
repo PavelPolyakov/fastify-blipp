@@ -1,4 +1,6 @@
-Inspired by [blipp](https://github.com/danielb2/blipp) hapijs plugin which prints your routes.
+`fastify-blipp` prints your routes to the console. So each time your server starts, you know which endpoints are available.
+
+(inspired by [blipp](https://github.com/danielb2/blipp) hapijs plugin)
 
 ## install
 ```
