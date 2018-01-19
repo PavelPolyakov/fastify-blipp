@@ -23,8 +23,8 @@ fastify.post("/hello", async (req, reply) => ({
   greeting: `Hello, ${req.body.username}`
 }));
 fastify.get(
-  "/example/at/:hour(^\\\\d{2})h:minute(^\\\\d{2})m",
-  (req, reply) => ({
+  "/example/at/:hour(^\\d{2})h:minute(^\\d{2})m",
+  async (req, reply) => ({
     hour: req.params.hour,
     minute: req.params.minute
   })
