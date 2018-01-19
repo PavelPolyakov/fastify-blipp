@@ -9,8 +9,10 @@ npm i fastify-blipp
 ```javascript
 const fastify = require('fastify')()
 
+// register the plugin
 fastify.register(require('fastify-blipp'));
 
+// register some routes
 fastify.get("/hello/:username", async (req, reply) => ({
   greeting: `Hello, ${req.params.username}`
 }));
@@ -32,6 +34,7 @@ const start = async () => {
     try {
         await fastify.listen(3000);
 
+        // just blipp, and it'll print your routes
         fastify.blipp();
 
         console.log(`server listening on ${fastify.server.address().port}`);
