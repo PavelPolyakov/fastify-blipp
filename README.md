@@ -9,7 +9,7 @@ npm i fastify-blipp
 ```javascript
 const fastify = require('fastify')()
 
-fastify.register(require('../src'));
+fastify.register(require('fastify-blipp'));
 
 fastify.get('/hello/:username', async (req, reply) => ({greeting: `Hello, ${req.params.username}`}));
 fastify.post('/hello', async (req, reply) => ({greeting: `Hello, ${req.body.username}`}));
