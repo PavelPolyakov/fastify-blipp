@@ -8,8 +8,8 @@ module.exports = fp(function(fastify, opts, next) {
       for (let url in route) {
         Object.keys(route[url]).forEach(method => {
           routes += `${chalk.green(method.toUpperCase())}\t${url.replace(
-            /(:.*?(\/|$))/g,
-            chalk.gray("$1")
+            /(?:\:[\w]+|\[\:\w+\])/g,
+            chalk.gray("$&")
           )}\n`;
         });
       }

@@ -2,6 +2,7 @@
 
 exports[`blipp / prints routes 1`] = `
 "[32mGET[39m	/hello/[90m:username[39m
+[32mGET[39m	/hello/[90m:username[39m/CAPS
 [32mPOST[39m	/hello
 "
 `;

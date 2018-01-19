@@ -19,6 +19,9 @@ describe("blipp", () => {
       fastify.get("/hello/:username", async (req, reply) => ({
         greeting: `Hello, ${req.params.username}`
       }));
+      fastify.get("/hello/:username/CAPS", async (req, reply) => ({
+        greeting: `Hello, ${req.params.username.toUpperCase()}`
+      }));
       fastify.post("/hello", async (req, reply) => ({
         greeting: `Hello, ${req.body.username}`
       }));
