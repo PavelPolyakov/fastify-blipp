@@ -1,0 +1,6 @@
+var
+.lintstagedrc
+.nvmrc
+package
+__tests__
+.idea
