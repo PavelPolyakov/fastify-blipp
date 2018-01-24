@@ -8,13 +8,14 @@ npm i fastify-blipp
 ```
 
 ## usage
+It is important to register the plugin as soon as possible, so it starts to listen for the new routes.
+
 ```javascript
-const fastify = require('fastify')()
+const fastify = require("fastify")();
 
-// register the plugin
-fastify.register(require('fastify-blipp'));
+// register it as early as possible
+fastify.register(require("fastify-blipp"));
 
-// register some routes
 fastify.get("/hello/:username", async (req, reply) => ({
   greeting: `Hello, ${req.params.username}`
 }));
@@ -33,18 +34,17 @@ fastify.get(
 );
 
 const start = async () => {
-    try {
-        await fastify.listen(3000);
+  try {
+    await fastify.listen(3000);
 
-        // just blipp, and it'll print your routes
-        fastify.blipp();
+    fastify.blipp();
 
-        console.log(`server listening on ${fastify.server.address().port}`);
-    } catch (err) {
-        console.error(err);
-        process.exit(1)
-    }
-}
+    console.log(`server listening on ${fastify.server.address().port}`);
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+};
 
 start();
 ```
