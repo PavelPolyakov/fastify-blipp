@@ -20,9 +20,20 @@ module.exports = fp(function(fastify, opts, next) {
 
     let output = "";
     for (let route of routes) {
-      output += `${chalk.green(
-        !Array.isArray(route.method) ? route.method.toUpperCase() : JSON.stringify(route.method.map(s => s.toUpperCase()))
-      )}\t${route.url.replace(/(?:\:[\w]+|\[\:\w+\])/g, chalk.gray("$&"))}\n`;
+      let methods = [];
+      // one route can support more than one method
+      if (!Array.isArray(route.method)) {
+        methods.push(route.method);
+      } else {
+        methods = route.method.sort((a, b) => a > b);
+      }
+
+      methods.forEach(method => {
+        output += `${chalk.green(method.toUpperCase())}\t${route.url.replace(
+          /(?:\:[\w]+|\[\:\w+\])/g,
+          chalk.gray("$&")
+        )}\n`;
+      });
     }
 
     if (routes.length > 0) {
