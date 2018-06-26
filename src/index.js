@@ -21,7 +21,7 @@ module.exports = fp(function(fastify, opts, next) {
     let output = "";
     for (let route of routes) {
       output += `${chalk.green(
-        route.method.toUpperCase()
+        !Array.isArray(route.method) ? route.method.toUpperCase() : JSON.stringify(route.method.map(s => s.toUpperCase()))
       )}\t${route.url.replace(/(?:\:[\w]+|\[\:\w+\])/g, chalk.gray("$&"))}\n`;
     }
 

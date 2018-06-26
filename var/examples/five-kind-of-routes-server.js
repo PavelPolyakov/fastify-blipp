@@ -18,6 +18,13 @@ fastify.get(
     minute: req.params.minute
   })
 );
+fastify.route({
+  method: ["GET", "HEAD"],
+  url: "/hello/complex-route",
+  handler: async (req, reply) => ({
+    greeting: "Hello from the complex route"
+  })
+});
 
 const start = async () => {
   try {
