@@ -25,6 +25,13 @@ describe("blipp", () => {
       fastify.post("/hello", async (req, reply) => ({
         greeting: `Hello, ${req.body.username}`
       }));
+      fastify.route({
+        method: ["GET", "HEAD"],
+        url: "/hello/complex-route",
+        handler: async (req, reply) => ({
+          greeting: "Hello from the complex route"
+        })
+      });
 
       await fastify.ready();
 
