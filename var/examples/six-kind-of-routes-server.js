@@ -25,6 +25,13 @@ fastify.route({
     greeting: "Hello from the complex route"
   })
 });
+fastify.register((fastify, {}, done) => {
+  fastify.get("/", async (req, reply) => ({
+    greeting: `Hello, this route is served under prefix`
+  }));
+
+  done();
+}, { prefix: '/prefix' });
 
 const start = async () => {
   try {

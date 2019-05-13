@@ -3,9 +3,11 @@ const chalk = require("chalk");
 
 module.exports = fp(function(fastify, opts, next) {
   const routes = [];
+  let i =0;
 
   fastify.addHook("onRoute", routeOptions => {
-    routes.push(routeOptions);
+    i++;
+    routes.push({...routeOptions});
   });
 
   fastify.decorate("blipp", () => {

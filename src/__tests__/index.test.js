@@ -32,6 +32,13 @@ describe("blipp", () => {
           greeting: "Hello from the complex route"
         })
       });
+      fastify.register((fastify, {}, done) => {
+        fastify.get("/", async (req, reply) => ({
+          greeting: `Hello, this route is served under a prefix`
+        }));
+
+        done();
+      }, { prefix: '/prefix' });
 
       await fastify.ready();
 
