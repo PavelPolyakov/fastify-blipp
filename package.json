@@ -1,6 +1,6 @@
 {
   "name": "fastify-blipp",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Print routes of your fastify instance",
   "main": "src/index.js",
   "scripts": {
@@ -24,14 +24,14 @@
   "homepage": "https://github.com/PavelPolyakov/fastify-blipp#readme",
   "devDependencies": {
     "cross-env": "^5.2.0",
-    "fastify": "^2.3.0",
-    "husky": "^2.2.0",
+    "fastify": "^2.6.0",
+    "husky": "^3.0.0",
     "jest": "^24.8.0",
-    "lint-staged": "^8.1.6",
-    "prettier": "^1.17.0"
+    "lint-staged": "^9.2.0",
+    "prettier": "^1.18.2"
   },
   "dependencies": {
     "chalk": "^2.4.2",
-    "fastify-plugin": "^1.5.0"
+    "fastify-plugin": "^1.6.0"
   }
 }
