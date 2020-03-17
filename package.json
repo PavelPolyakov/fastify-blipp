@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest",
     "precommit": "lint-staged",
-    "prettier:all": "prettier \"./{src,var}/**/*.js\" --write"
+    "prettier:all": "prettier \"./{src,var}/**/*.js\" --write",
+    "typescript": "tsc --project ./src/__tests__/types/tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,8 @@
     "husky": "^3.0.0",
     "jest": "^24.8.0",
     "lint-staged": "^9.2.0",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "chalk": "^2.4.2",
