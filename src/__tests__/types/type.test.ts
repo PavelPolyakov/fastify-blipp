@@ -1,5 +1,5 @@
-import fastify = require('fastify');
-import fastifyBlipp = require('../../../index');
+import * as fastify from 'fastify';
+import * as fastifyBlipp from '../../../index';
 
 const app = fastify();
 
