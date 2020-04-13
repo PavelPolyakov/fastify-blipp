@@ -8,7 +8,7 @@ type HttpRequest = IncomingMessage | Http2ServerRequest;
 type HttpResponse = ServerResponse | Http2ServerResponse;
 
 interface BlippOptions {
-    blippLog: (message: string) => void;
+    blippLog?: (message: string) => void;
 }
 
 declare module 'fastify' {
