@@ -1,6 +1,6 @@
-import * as fastify from 'fastify';
-import * as fastifyBlipp from '../../../index';
+import fastify from 'fastify';
+import fastifyBlipp from '../../../index';
 
 const app = fastify();
 
-app.register(fastifyBlipp);
+app.register(fastifyBlipp, {blippLog: console.log});

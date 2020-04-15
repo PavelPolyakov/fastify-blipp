@@ -3,11 +3,13 @@ const chalk = require("chalk");
 
 module.exports = fp(function(fastify, opts, next) {
   const routes = [];
-  let i =0;
+  let i = 0;
+
+  const { blippLog = console.log } = opts;
 
   fastify.addHook("onRoute", routeOptions => {
     i++;
-    routes.push({...routeOptions});
+    routes.push({ ...routeOptions });
   });
 
   fastify.decorate("blipp", () => {
@@ -16,8 +18,8 @@ module.exports = fp(function(fastify, opts, next) {
     }
 
     // sort the routes alphabetically ASC by urls, then by method ASC
-    routes.sort(
-      (a, b) => (a.url !== b.url ? a.url > b.url : a.method > b.method)
+    routes.sort((a, b) =>
+      a.url !== b.url ? a.url > b.url : a.method > b.method
     );
 
     let output = "";
@@ -39,8 +41,8 @@ module.exports = fp(function(fastify, opts, next) {
     }
 
     if (routes.length > 0) {
-      console.log(`🏷️  Routes:`);
-      console.log(output);
+      blippLog(`🏷️  Routes:`);
+      blippLog(output);
     }
   });
 

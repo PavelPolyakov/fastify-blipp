@@ -7,6 +7,10 @@ type HttpServer = Server | Http2Server | Http2SecureServer | https.Server;
 type HttpRequest = IncomingMessage | Http2ServerRequest;
 type HttpResponse = ServerResponse | Http2ServerResponse;
 
+interface BlippOptions {
+    blippLog?: (message: string) => void;
+}
+
 declare module 'fastify' {
     interface FastifyInstance<
         HttpServer,
@@ -16,6 +20,6 @@ declare module 'fastify' {
         blipp: () => void;
     }   
 }
-declare function fastifyBlipp(): Plugin<HttpServer, HttpRequest, HttpResponse, any>;
-declare namespace fastifyBlipp {}
+declare const fastifyBlipp: Plugin<HttpServer, HttpRequest, HttpResponse, BlippOptions>;
+
 export = fastifyBlipp;

@@ -32,13 +32,16 @@ describe("blipp", () => {
           greeting: "Hello from the complex route"
         })
       });
-      fastify.register((fastify, {}, done) => {
-        fastify.get("/", async (req, reply) => ({
-          greeting: `Hello, this route is served under a prefix`
-        }));
+      fastify.register(
+        (fastify, {}, done) => {
+          fastify.get("/", async (req, reply) => ({
+            greeting: `Hello, this route is served under a prefix`
+          }));
 
-        done();
-      }, { prefix: '/prefix' });
+          done();
+        },
+        { prefix: "/prefix" }
+      );
 
       await fastify.ready();
 
@@ -46,6 +49,49 @@ describe("blipp", () => {
 
       expect(console.log.mock.calls[0][0]).toBe(`🏷️  Routes:`);
       expect(console.log.mock.calls[1][0]).toMatchSnapshot();
+      done();
+    });
+
+    it("prints routes with custom log function", async done => {
+      const fastify = require("fastify")();
+
+      const logSpy = jest.fn();
+
+      fastify.register(require("../../src/index"), { blippLog: logSpy });
+
+      fastify.get("/hello/:username", async (req, reply) => ({
+        greeting: `Hello, ${req.params.username}`
+      }));
+      fastify.get("/hello/:username/CAPS", async (req, reply) => ({
+        greeting: `Hello, ${req.params.username.toUpperCase()}`
+      }));
+      fastify.post("/hello", async (req, reply) => ({
+        greeting: `Hello, ${req.body.username}`
+      }));
+      fastify.route({
+        method: ["GET", "HEAD"],
+        url: "/hello/complex-route",
+        handler: async (req, reply) => ({
+          greeting: "Hello from the complex route"
+        })
+      });
+      fastify.register(
+        (fastify, {}, done) => {
+          fastify.get("/", async (req, reply) => ({
+            greeting: `Hello, this route is served under a prefix`
+          }));
+
+          done();
+        },
+        { prefix: "/prefix" }
+      );
+
+      await fastify.ready();
+
+      fastify.blipp();
+
+      expect(logSpy.mock.calls[0][0]).toBe(`🏷️  Routes:`);
+      expect(logSpy.mock.calls[1][0]).toMatchSnapshot();
       done();
     });
   });
