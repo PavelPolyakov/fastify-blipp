@@ -16,7 +16,7 @@ const fastify = require("fastify")();
 // register it as early as possible
 fastify.register(require("fastify-blipp"));
 //or if you wan't custom log function
-fastify.register(require("fastify-blipp"), {blippLog: (msg) => console.log(msg)});
+// fastify.register(require("fastify-blipp"), {blippLog: (msg) => console.log(msg)});
 
 fastify.get("/hello/:username", async (req, reply) => ({
   greeting: `Hello, ${req.params.username}`
