@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`blipp / prints routes 1`] = `
-"[32mGET[39m	/hello/[90m:username[39m
+"[32mPOST[39m	/hello
+[32mGET[39m	/hello/[90m:username[39m
 [32mGET[39m	/hello/[90m:username[39m/CAPS
-[32mPOST[39m	/hello
 [32mGET[39m	/hello/complex-route
 [32mHEAD[39m	/hello/complex-route
 [32mGET[39m	/prefix
@@ -12,9 +12,9 @@ exports[`blipp / prints routes 1`] = `
 `;
 
 exports[`blipp / prints routes with custom log function 1`] = `
-"[32mGET[39m	/hello/[90m:username[39m
+"[32mPOST[39m	/hello
+[32mGET[39m	/hello/[90m:username[39m
 [32mGET[39m	/hello/[90m:username[39m/CAPS
-[32mPOST[39m	/hello
 [32mGET[39m	/hello/complex-route
 [32mHEAD[39m	/hello/complex-route
 [32mGET[39m	/prefix
