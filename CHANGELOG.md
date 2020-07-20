@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [3.0.0] - 2020-07-20
+### Changed
+- All dependencies were updated, now `fastify v3` is considered as a default host framework
+
 ## [2.3.0] - 2020-04-15
 ### Added
 - added option to configure log method
