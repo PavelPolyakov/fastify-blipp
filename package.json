@@ -1,6 +1,6 @@
 {
   "name": "fastify-blipp",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Print routes of your fastify instance",
   "main": "src/index.js",
   "scripts": {
