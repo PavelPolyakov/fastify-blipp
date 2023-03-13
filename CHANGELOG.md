@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [4.0.0] - 2023-03-14
+### Changed
+- ESM support
+- Switched to @fastify/* namespace
+
 ### [3.0.0] - 2020-07-20
 ### Changed
 - All dependencies were updated, now `fastify v3` is considered as a default host framework
