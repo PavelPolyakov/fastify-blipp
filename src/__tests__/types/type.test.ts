@@ -1,5 +1,5 @@
-import fastify from 'fastify';
-import fastifyBlipp from '../../../index';
+import {fastify} from 'fastify';
+import fastifyBlipp from '../../../index.js';
 
 const app = fastify();
 

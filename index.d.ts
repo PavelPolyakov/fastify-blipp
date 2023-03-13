@@ -5,9 +5,9 @@ interface BlippOptions {
 }
 
 declare module 'fastify' {
-    export interface FastifyInstance {
+    interface FastifyInstance {
         blipp: () => void;
-    }   
+    }
 }
 declare const fastifyBlipp: FastifyPlugin<BlippOptions>;
 
