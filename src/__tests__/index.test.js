@@ -1,5 +1,12 @@
-import {jest, expect, describe, beforeAll, beforeEach, it} from '@jest/globals';
-import {fastify as fastifyInstance} from "fastify";
+import {
+  jest,
+  expect,
+  describe,
+  beforeAll,
+  beforeEach,
+  it,
+} from "@jest/globals";
+import { fastify as fastifyInstance } from "fastify";
 import blippPlugin from "../index.js";
 global.console.log = jest.fn();
 
@@ -19,25 +26,25 @@ describe("blipp", () => {
       fastify.register(blippPlugin);
 
       fastify.get("/hello/:username", async (req, reply) => ({
-        greeting: `Hello, ${req.params.username}`
+        greeting: `Hello, ${req.params.username}`,
       }));
       fastify.get("/hello/:username/CAPS", async (req, reply) => ({
-        greeting: `Hello, ${req.params.username.toUpperCase()}`
+        greeting: `Hello, ${req.params.username.toUpperCase()}`,
       }));
       fastify.post("/hello", async (req, reply) => ({
-        greeting: `Hello, ${req.body.username}`
+        greeting: `Hello, ${req.body.username}`,
       }));
       fastify.route({
         method: ["GET", "HEAD"],
         url: "/hello/complex-route",
         handler: async (req, reply) => ({
-          greeting: "Hello from the complex route"
-        })
+          greeting: "Hello from the complex route",
+        }),
       });
       fastify.register(
         (fastify, {}, done) => {
           fastify.get("/", async (req, reply) => ({
-            greeting: `Hello, this route is served under a prefix`
+            greeting: `Hello, this route is served under a prefix`,
           }));
 
           done();
@@ -61,25 +68,25 @@ describe("blipp", () => {
       fastify.register(blippPlugin, { blippLog: logSpy });
 
       fastify.get("/hello/:username", async (req, reply) => ({
-        greeting: `Hello, ${req.params.username}`
+        greeting: `Hello, ${req.params.username}`,
       }));
       fastify.get("/hello/:username/CAPS", async (req, reply) => ({
-        greeting: `Hello, ${req.params.username.toUpperCase()}`
+        greeting: `Hello, ${req.params.username.toUpperCase()}`,
       }));
       fastify.post("/hello", async (req, reply) => ({
-        greeting: `Hello, ${req.body.username}`
+        greeting: `Hello, ${req.body.username}`,
       }));
       fastify.route({
         method: ["GET", "HEAD"],
         url: "/hello/complex-route",
         handler: async (req, reply) => ({
-          greeting: "Hello from the complex route"
-        })
+          greeting: "Hello from the complex route",
+        }),
       });
       fastify.register(
         (fastify, {}, done) => {
           fastify.get("/", async (req, reply) => ({
-            greeting: `Hello, this route is served under a prefix`
+            greeting: `Hello, this route is served under a prefix`,
           }));
 
           done();
