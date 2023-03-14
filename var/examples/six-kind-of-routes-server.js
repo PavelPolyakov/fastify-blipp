@@ -1,31 +1,33 @@
-const fastify = require("fastify")();
+import {fastify} from "fastify";
+import index from "../../src/index.js";
+const app = fastify();
 
-fastify.register(require("../../src/index"));
+app.register(index);
 
-fastify.get("/hello/:username", async (req, reply) => ({
+app.get("/hello/:username", async (req, reply) => ({
   greeting: `Hello, ${req.params.username}`
 }));
-fastify.get("/hello/:username/CAPS", async (req, reply) => ({
+app.get("/hello/:username/CAPS", async (req, reply) => ({
   greeting: `Hello, ${req.params.username.toUpperCase()}`
 }));
-fastify.post("/hello", async (req, reply) => ({
+app.post("/hello", async (req, reply) => ({
   greeting: `Hello, ${req.body.username}`
 }));
-fastify.get(
+app.get(
   "/example/at/:hour(^\\d{2})h:minute(^\\d{2})m",
   async (req, reply) => ({
     hour: req.params.hour,
     minute: req.params.minute
   })
 );
-fastify.route({
+app.route({
   method: ["GET", "HEAD"],
   url: "/hello/complex-route",
   handler: async (req, reply) => ({
     greeting: "Hello from the complex route"
   })
 });
-fastify.register((fastify, {}, done) => {
+app.register((fastify, {}, done) => {
   fastify.get("/", async (req, reply) => ({
     greeting: `Hello, this route is served under prefix`
   }));
@@ -35,11 +37,11 @@ fastify.register((fastify, {}, done) => {
 
 const start = async () => {
   try {
-    await fastify.listen(3000);
+    await app.listen(3000);
 
-    fastify.blipp();
+    app.blipp();
 
-    console.log(`server listening on ${fastify.server.address().port}`);
+    console.log(`server listening on ${app.server.address().port}`);
   } catch (err) {
     console.error(err);
     process.exit(1);

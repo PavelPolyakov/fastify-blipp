@@ -1,7 +1,7 @@
-const fp = require("fastify-plugin");
-const chalk = require("chalk");
+import fp from "fastify-plugin";
+import chalk from "chalk";
 
-module.exports = fp(function(fastify, opts, next) {
+const blippPlugin = fp(function(fastify, opts, next) {
   const routes = [];
   let i = 0;
 
@@ -48,3 +48,5 @@ module.exports = fp(function(fastify, opts, next) {
 
   next();
 });
+
+export {blippPlugin as default};

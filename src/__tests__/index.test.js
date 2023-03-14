@@ -1,3 +1,6 @@
+import {jest, expect, describe, beforeAll, beforeEach, it} from '@jest/globals';
+import {fastify as fastifyInstance} from "fastify";
+import blippPlugin from "../index.js";
 global.console.log = jest.fn();
 
 describe("blipp", () => {
@@ -6,15 +9,14 @@ describe("blipp", () => {
   });
 
   beforeEach(() => {
-    request = {};
+    const request = {};
     jest.clearAllMocks();
   });
 
   describe("/", () => {
-    it("prints routes", async done => {
-      const fastify = require("fastify")();
-
-      fastify.register(require("../../src/index"));
+    it("prints routes", async () => {
+      const fastify = fastifyInstance();
+      fastify.register(blippPlugin);
 
       fastify.get("/hello/:username", async (req, reply) => ({
         greeting: `Hello, ${req.params.username}`
@@ -49,15 +51,14 @@ describe("blipp", () => {
 
       expect(console.log.mock.calls[0][0]).toBe(`🏷️  Routes:`);
       expect(console.log.mock.calls[1][0]).toMatchSnapshot();
-      done();
+      return Promise.resolve({});
     });
 
-    it("prints routes with custom log function", async done => {
-      const fastify = require("fastify")();
-
+    it("prints routes with custom log function", async () => {
+      const fastify = fastifyInstance();
       const logSpy = jest.fn();
 
-      fastify.register(require("../../src/index"), { blippLog: logSpy });
+      fastify.register(blippPlugin, { blippLog: logSpy });
 
       fastify.get("/hello/:username", async (req, reply) => ({
         greeting: `Hello, ${req.params.username}`
@@ -92,7 +93,7 @@ describe("blipp", () => {
 
       expect(logSpy.mock.calls[0][0]).toBe(`🏷️  Routes:`);
       expect(logSpy.mock.calls[1][0]).toMatchSnapshot();
-      done();
+      return Promise.resolve({});
     });
   });
 });
