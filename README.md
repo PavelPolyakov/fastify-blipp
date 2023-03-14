@@ -11,33 +11,41 @@ npm i fastify-blipp
 It is important to register the plugin as soon as possible, so it starts to listen for the new routes.
 
 ```javascript
-const fastify = require("fastify")();
+import { fastify as fastifyInstance} from "fastify";
+import blippPlugin from "fastify-blipp";
+
+const fastify = fastifyInstance();
 
 // register it as early as possible
-fastify.register(require("fastify-blipp"));
+fastify.register(blippPlugin);
 //or if you wan't custom log function
 // fastify.register(require("fastify-blipp"), {blippLog: (msg) => console.log(msg)});
 
-fastify.get("/hello/:username", async (req, reply) => ({
-  greeting: `Hello, ${req.params.username}`
-}));
-fastify.get("/hello/:username/CAPS", async (req, reply) => ({
-  greeting: `Hello, ${req.params.username.toUpperCase()}`
-}));
-fastify.post("/hello", async (req, reply) => ({
-  greeting: `Hello, ${req.body.username}`
-}));
-fastify.get(
-  "/example/at/:hour(^\\d{2})h:minute(^\\d{2})m",
-  async (req, reply) => ({
-    hour: req.params.hour,
-    minute: req.params.minute
-  })
-);
+fastify.register(
+    (fastify, {}, done) => {
+        fastify.get("/hello/:username", async (req, reply) => ({
+            greeting: `Hello, ${req.params.username}`
+          }));
+          fastify.get("/hello/:username/CAPS", async (req, reply) => ({
+            greeting: `Hello, ${req.params.username.toUpperCase()}`
+          }));
+          fastify.post("/hello", async (req, reply) => ({
+            greeting: `Hello, ${req.body.username}`
+          }));
+          fastify.get(
+            "/example/at/:hour(^\\d{2})h:minute(^\\d{2})m",
+            async (req, reply) => ({
+              hour: req.params.hour,
+              minute: req.params.minute
+            })
+          );
+        done();
+    }
+)
 
 const start = async () => {
   try {
-    await fastify.listen(3000);
+    await fastify.listen({port:3000});
 
     fastify.blipp();
 
